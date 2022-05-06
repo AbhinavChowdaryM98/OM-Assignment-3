@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import math
 from numpy.linalg import eigh
+from mpl_toolkits import mplot3d
 
 #Part 1
 #f(x) = 10x1**2 + 10x1x2 + x2**2 + 4*x1 - 10*x2 + 2 over [-3, 3] x [-3, 3]
@@ -31,6 +32,21 @@ for i in range(200):
     elif f_new > f:
         pos = True
     val.append(f_new - f)
+
+#3D plot
+fig = plt.figure()
+ax = plt.axes(projection ='3d')
+x = np.linspace(-5, 5, 100)
+y = np.linspace(-5, 5, 100)
+X,Y = np.meshgrid(x, y)
+z = fun1(X,Y)
+# ax.plot(X, Y, z, cmap='viridis')
+ax.plot_surface(X, Y, z, rstride=1, cstride=1, cmap='viridis', edgecolor='none')
+plt.plot(x1_init[0], x1_init[1], fun1(x1_init[0], x1_init[1]),marker="o", markersize=10, markeredgecolor="orange", markerfacecolor="red")
+ax.set_title('3D line plot')
+plt.show()
+
+#Plot against theta
 x = [i*math.pi/100 for i in range(200)]
 plt.plot(x, val)
 plt.show()
@@ -77,6 +93,21 @@ for i in range(200):
         pos = True
     val2.append(f_new - f2)
     
+#3D plot
+fig = plt.figure()
+ax = plt.axes(projection ='3d')
+x = np.linspace(-5, 5, 100)
+y = np.linspace(-5, 5, 100)
+X,Y = np.meshgrid(x, y)
+z = fun2(X,Y)
+# ax.contour3D(X, Y, z, cmap='viridis')
+ax.plot_surface(X, Y, z, rstride=1, cstride=1, cmap='viridis', edgecolor='none')
+plt.plot(x2_init[0], x2_init[1], fun2(x2_init[0], x2_init[1]),marker="o", markersize=10, markeredgecolor="orange", markerfacecolor="red")
+ax.set_title('3D line plot')
+plt.show()
+
+#Plotting against theta
+x = [i*math.pi/100 for i in range(200)]
 plt.plot(x, val2)
 plt.show()
 if pos and neg:

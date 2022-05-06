@@ -22,15 +22,15 @@ for i in range(5):
     f = [fun(x[0][0], x[0][1])]
     while grad_fun(x[-1][0], x[-1][1])[0]**2 + grad_fun(x[-1][0], x[-1][1])[1]**2 > eps**2:
         alpha_temp = alpha[i]
-        x_new = (x[-1][0] - alpha_temp*(grad_fun(x[-1][0], x[-1][1])[0]), x[-1][1] - alpha[i]*(grad_fun(x[-1][0], x[-1][1])[1]))
+        x_new = (x[-1][0] - alpha_temp*(grad_fun(x[-1][0], x[-1][1])[0]), x[-1][1] - alpha_temp*(grad_fun(x[-1][0], x[-1][1])[1]))
         x.append(x_new)
         k+=1
         f.append(fun(x_new[0], x_new[1]))
     [p, q] = np.meshgrid(x[:][0], x[:][1])
     fig, ax = plt.subplots(1, 1)
     r = fun(p,q)
-    ax.contour(p,q,r)
-    ax.set_title('Contour Plot')
+    ax.contourf(p,q,r)
+    ax.set_title('Contour Plot at alpha = '+str(alpha[i]))
     ax.set_xlabel('x1')
     ax.set_ylabel('x2')
     plt.show()
@@ -43,15 +43,15 @@ for i in range(1):
     f = [fun(x[0][0], x[0][1])]
     while grad_fun(x[-1][0], x[-1][1])[0]**2 + grad_fun(x[-1][0], x[-1][1])[1]**2 > eps**2:
         alpha_temp = alpha2
-        x_new = (x[-1][0] - alpha_temp*(grad_fun(x[-1][0], x[-1][1])[0]), x[-1][1] - alpha[i]*(grad_fun(x[-1][0], x[-1][1])[1]))
+        x_new = (x[-1][0] - alpha_temp*(grad_fun(x[-1][0], x[-1][1])[0]), x[-1][1] - alpha_temp*(grad_fun(x[-1][0], x[-1][1])[1]))
         x.append(x_new)
         k+=1
         f.append(fun(x_new[0], x_new[1]))
     [p, q] = np.meshgrid(x[:][0], x[:][1])
     fig, ax = plt.subplots(1, 1)
     r = fun(p,q)
-    ax.contour(p,q,r)
-    ax.set_title('Contour Plot')
+    ax.contourf(p,q,r)
+    ax.set_title('Contour Plot at alpha = '+str(alpha2))
     ax.set_xlabel('x1')
     ax.set_ylabel('x2')
     plt.show()
